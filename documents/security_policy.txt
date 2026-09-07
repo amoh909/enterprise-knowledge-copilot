@@ -1,0 +1,17 @@
+Information Security Policy
+
+Passwords
+
+Employees must use passwords containing at least 12 characters.
+
+Multi-Factor Authentication
+
+Multi-factor authentication is required for all production systems.
+
+Access Control
+
+Employees must only access systems and information required for their job responsibilities.
+
+Incident Reporting
+
+Security incidents must be reported to the security team within 24 hours of discovery.
