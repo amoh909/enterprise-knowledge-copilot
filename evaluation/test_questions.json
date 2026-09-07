@@ -1,0 +1,18 @@
+[
+  {
+    "question": "How many annual leave days do employees receive?",
+    "expected": "20 days"
+  },
+  {
+    "question": "How many unused annual leave days can be carried forward?",
+    "expected": "5 days"
+  },
+  {
+    "question": "How long is the probation period?",
+    "expected": "3 months"
+  },
+  {
+    "question": "Is multi-factor authentication required?",
+    "expected": "yes"
+  }
+]

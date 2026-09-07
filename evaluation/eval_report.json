@@ -1,0 +1,38 @@
+[
+  {
+    "question": "How many annual leave days do employees receive?",
+    "expected": "20 days",
+    "actual": "Employees receive 20 days of paid annual leave per calendar year.",
+    "sources": [
+      "leave_policy.txt"
+    ],
+    "status": "SUCCESS"
+  },
+  {
+    "question": "How many unused annual leave days can be carried forward?",
+    "expected": "5 days",
+    "actual": "Up to 5 unused annual leave days may be carried forward.",
+    "sources": [
+      "leave_policy.txt"
+    ],
+    "status": "SUCCESS"
+  },
+  {
+    "question": "How long is the probation period?",
+    "expected": "3 months",
+    "actual": "Three months.",
+    "sources": [
+      "employee_handbook.txt"
+    ],
+    "status": "SUCCESS"
+  },
+  {
+    "question": "Is multi-factor authentication required?",
+    "expected": "yes",
+    "actual": "Yes, multi-factor authentication is required for all production systems.",
+    "sources": [
+      "security_policy.txt"
+    ],
+    "status": "SUCCESS"
+  }
+]
