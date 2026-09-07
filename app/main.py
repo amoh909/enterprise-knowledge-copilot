@@ -14,5 +14,9 @@ def health():
 
 @app.post("/ask", response_model=QuestionResponse)
 def ask(request: QuestionRequest):
-    answer_text = answer_question(request.question)
-    return QuestionResponse(answer=answer_text)
+    result = answer_question(request.question)
+    
+    return QuestionResponse(
+        answer=result["answer"],
+        sources=result["sources"]
+    )
