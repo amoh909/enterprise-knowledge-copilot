@@ -29,6 +29,8 @@ Grounded response
     ↓
 REST API
 
+![Repository Architecture](assets/repo-architecture.png)
+
 ## Features
 
 - Document ingestion
@@ -65,6 +67,8 @@ Response:
 {
   "answer": "Full-time employees receive 20 days of paid annual leave."
 }
+
+![Swagger UI Live Execution](assets/swagger-ui.png)
 
 ## Running locally
 
