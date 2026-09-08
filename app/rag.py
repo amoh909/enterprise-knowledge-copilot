@@ -1,5 +1,6 @@
 import os
 import pickle
+import re
 from pathlib import Path
 from typing import Dict, Any
 
@@ -25,40 +26,50 @@ You are an enterprise knowledge assistant.
 
 Answer questions using ONLY the retrieved knowledge base context.
 
+Provide your answer as a single, plain text sentence. Do NOT include markdown formatting, asterisks, bold text (**), bullet points, or list structures. 
+
 If the retrieved context does not contain enough information to
 answer the question, clearly state that the information is not
 available in the knowledge base.
 
 Do not invent policies, numbers, dates, procedures, or facts.
-
-Keep answers concise and directly address the user's question.
 """
 
 
-def chunk_text(text: str, chunk_size: int = 500, overlap: int = 100):
-    """Split document text into overlapping word-based chunks."""
-    words = text.split()
+def chunk_text(text: str, chunk_size: int = 180, overlap: int = 40):
+    """Split documents by numbered sections, then chunk oversized sections."""
+    sections = re.split(r"(?=\b\d+\.\d+\s)", text)
 
     chunks = []
 
-    start = 0
+    for section in sections:
+        section = section.strip()
 
-    while start < len(words):
-        end = start + chunk_size
+        if not section:
+            continue
 
-        chunk = " ".join(words[start:end])
+        words = section.split()
 
-        if chunk.strip():
-            chunks.append(chunk)
+        if len(words) <= chunk_size:
+            chunks.append(section)
+            continue
 
-        start += chunk_size - overlap
+        start = 0
+
+        while start < len(words):
+            end = start + chunk_size
+            chunk = " ".join(words[start:end])
+
+            if chunk.strip():
+                chunks.append(chunk)
+
+            start += chunk_size - overlap
 
     return chunks
 
 
 def build_index():
-    """Load documents, chunk them, generate embeddings, and save the index."""
-
+    """Load documents, chunk them dynamically, generate embeddings, and save."""
     records = []
 
     for path in DOCUMENT_DIR.iterdir():
@@ -99,15 +110,13 @@ def build_index():
     with open(INDEX_PATH, "wb") as file:
         pickle.dump(index, file)
 
-    print(f"Indexed {len(records)} chunks from {len(set(r['source'] for r in records))} documents.")
+    print(f"Generated {len(records)} vector chunks across your files.")
 
 
 def load_index():
     """Load the persisted vector index."""
     if not INDEX_PATH.exists():
-        raise RuntimeError(
-            "Vector index not found. Run: python scripts/ingest.py"
-        )
+        raise RuntimeError("Vector index not found. Run: python scripts/ingest.py")
 
     with open(INDEX_PATH, "rb") as file:
         return pickle.load(file)
@@ -115,7 +124,6 @@ def load_index():
 
 def retrieve(question: str, top_k: int = TOP_K):
     """Retrieve the most semantically similar document chunks."""
-
     index = load_index()
 
     query_embedding = embedding_model.encode(
@@ -123,7 +131,6 @@ def retrieve(question: str, top_k: int = TOP_K):
         normalize_embeddings=True,
     )[0]
 
-    # Matrix multiplication dot product for cosine similarity lookup
     similarities = index["embeddings"] @ query_embedding
 
     top_indices = np.argsort(similarities)[-top_k:][::-1]
@@ -131,13 +138,14 @@ def retrieve(question: str, top_k: int = TOP_K):
     results = []
 
     for index_position in top_indices:
+        score = float(similarities[index_position])
         record = index["records"][index_position]
 
         results.append(
             {
                 "text": record["text"],
                 "source": record["source"],
-                "score": float(similarities[index_position]),
+                "score": score,
             }
         )
 
@@ -146,7 +154,6 @@ def retrieve(question: str, top_k: int = TOP_K):
 
 def answer_question(question: str) -> Dict[str, Any]:
     """Run retrieval-augmented generation for a user question."""
-
     retrieved_chunks = retrieve(question)
 
     context = "\n\n".join(
@@ -156,41 +163,22 @@ def answer_question(question: str) -> Dict[str, Any]:
         ]
     )
 
-    user_content = f"""
-Retrieved Knowledge Base Context:
-
-{context}
-
-User Question:
-{question}
-"""
+    user_content = f"Retrieved Knowledge Base Context:\n\n{context}\n\nUser Question:\n{question}"
 
     chat_completion = client.chat.completions.create(
         model="openai/gpt-oss-120b",
         messages=[
-            {
-                "role": "system",
-                "content": SYSTEM_PROMPT,
-            },
-            {
-                "role": "user",
-                "content": user_content,
-            },
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": user_content},
         ],
         temperature=0.1,
     )
 
     answer_text = chat_completion.choices[0].message.content.strip()
-
-    sources = list(
-        dict.fromkeys(
-            chunk["source"]
-            for chunk in retrieved_chunks
-        )
-    )
+    sources = list(dict.fromkeys(chunk["source"] for chunk in retrieved_chunks))
 
     return {
         "answer": answer_text,
         "sources": sources,
-        "retrieved_chunks": retrieved_chunks,
     }
+

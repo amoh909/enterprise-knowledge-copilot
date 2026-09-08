@@ -1,14 +1,12 @@
-Employee Handbook
+========================================================================
+GLOBAL EMPLOYEE HANDBOOK AND CODE OF CONDUCT
+========================================================================
 
-Working Hours
+1.1 CORE WORKING HOURS AND ATTENDANCE
+Our corporate culture thrives on collaboration and predictable availability. Standard operational working hours for all regional offices are from 9:00 AM to 5:00 PM, Monday through Friday. Employees normally work eight hours per day, totaling forty hours per week. Flexible scheduling windows require formal agreement from department directors.
 
-Employees normally work eight hours per day, five days per week.
-Standard working hours are from 9:00 AM to 5:00 PM.
+1.2 HYBRID WORK ARRANGEMENTS
+The company operates on a flexible hybrid model. Approved employees may work remotely up to two days per week with manager approval. Remote work environments must maintain secure internet connections and an environment free from disruption.
 
-Remote Work
-
-Employees may work remotely up to two days per week with manager approval.
-
-Probation
-
-New employees have a three-month probationary period.
+1.3 PROBATIONARY PERIOD FOR NEW HIRES
+To ensure a mutually beneficial alignment of skills and culture, all incoming corporate new employees have a three-month probationary period from their official start date. During this timeframe, monthly milestones are evaluated by direct supervisors. Successful completion of the probation phase transitions the individual into permanent full-time employment status.

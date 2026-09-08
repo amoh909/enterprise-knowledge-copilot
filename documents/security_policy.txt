@@ -1,17 +1,15 @@
-Information Security Policy
+========================================================================
+INFORMATION SECURITY MANUAL: PRODUCTION ENVIRONMENT CONTROLS
+========================================================================
 
-Passwords
+4.1 CREDENTIAL COMPLEXITY AND PASSWORD STRENGTH
+Access to organizational assets requires strict adherence to corporate cryptography standards. Employees must use passwords containing at least 12 characters. These passwords must incorporate a mixture of uppercase letters, lowercase letters, numerals, and non-alphanumeric special symbols. Generic dictionary words or historical passphrases are blocked by the system.
 
-Employees must use passwords containing at least 12 characters.
+4.2 IDENTITY VERIFICATION AND HARDENING
+Compromising production infrastructure poses an existential threat to enterprise data integrity. To mitigate credential stuffing and phishing vectors, multi-factor authentication is required for all production systems. This includes access to code repositories, database nodes, cloud consoles, and staging clusters.
 
-Multi-Factor Authentication
+4.3 SYSTEM ACCESS CONTROL
+Role-Based Access Control (RBAC) dictates system visibility. Employees must only access systems and information required for their job responsibilities. Requests for temporary elevated privileges must be signed off by a security officer.
 
-Multi-factor authentication is required for all production systems.
-
-Access Control
-
-Employees must only access systems and information required for their job responsibilities.
-
-Incident Reporting
-
-Security incidents must be reported to the security team within 24 hours of discovery.
+4.4 INCIDENT MANAGEMENT AND FORENSICS
+Timely mitigation minimizes data exposure footprints. Security incidents must be reported to the security team within 24 hours of discovery via the emergency ticketing hotline or the designated secure Slack channel.
