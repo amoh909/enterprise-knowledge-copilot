@@ -16,3 +16,4 @@ env/
 Thumbs.db
 
 evaluation/eval_report.json
+data/index.pkl
