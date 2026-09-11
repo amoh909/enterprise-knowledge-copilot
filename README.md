@@ -100,7 +100,7 @@ FastAPI REST API
    docker compose up
    ```
    
-   > ⏳ **First-Time Boot Note:** The very first execution can take anywhere from **1 to 3 minutes** depending on your network speed. This delay occurs because the container must download the compressed AI embedding weights (~120MB) and initialize the underlying PyTorch math binaries. Subsequent server restarts will look at your cached local `data/index.pkl` volume asset and boot **instantly (< 2 seconds)**.
+   > ⏳ **First-Time Boot Note:** The very first execution can take anywhere from **1 to 3 minutes** depending on your network speed. This delay occurs because the container must download the compressed AI embedding weights (~120MB) and initialize the underlying PyTorch math binaries. Subsequent server restarts will look at your cached local `data/index.pkl` volume asset and boot **instantly (< 10 seconds)**.
 5. **Explore the API** interactively by opening the automatically generated Swagger UI page in your browser:
    ```text
    http://localhost:8000/docs

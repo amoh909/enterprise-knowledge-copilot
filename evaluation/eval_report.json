@@ -1,39 +1,51 @@
-[
-  {
-    "question": "How many annual leave days do employees receive?",
-    "expected": "20 days",
-    "actual": "Standard full-time corporate employees receive exactly 20 days of paid annual leave per calendar year.",
-    "sources": [
-      "leave_policy.txt"
-    ],
-    "status": "SUCCESS"
+{
+  "metrics": {
+    "total_test_cases": 4,
+    "total_passed": 4,
+    "total_failed": 0,
+    "accuracy_percentage": "100.0%"
   },
-  {
-    "question": "How many unused annual leave days can be carried forward?",
-    "expected": "5 days",
-    "actual": "Employees can carry forward up to five unused annual leave days into the next calendar year.",
-    "sources": [
-      "leave_policy.txt"
-    ],
-    "status": "SUCCESS"
-  },
-  {
-    "question": "How long is the probation period?",
-    "expected": "3 months",
-    "actual": "The probation period is three months.",
-    "sources": [
-      "employee_handbook.txt",
-      "leave_policy.txt"
-    ],
-    "status": "SUCCESS"
-  },
-  {
-    "question": "Is multi-factor authentication required?",
-    "expected": "yes",
-    "actual": "Yes, multi-factor authentication is required for all production systems.",
-    "sources": [
-      "security_policy.txt"
-    ],
-    "status": "SUCCESS"
-  }
-]
+  "results": [
+    {
+      "question": "How many annual leave days do employees receive?",
+      "expected_fact": "20 days",
+      "actual_response": "Standard full-time corporate employees receive exactly 20 days of paid annual leave per calendar year.",
+      "sources_attributed": [
+        "leave_policy.txt"
+      ],
+      "evaluation_status": "PASSED",
+      "failure_reason": null
+    },
+    {
+      "question": "How many unused annual leave days can be carried forward?",
+      "expected_fact": "5 days",
+      "actual_response": "Employees can carry forward up to five unused annual leave days into the next calendar year.",
+      "sources_attributed": [
+        "leave_policy.txt"
+      ],
+      "evaluation_status": "PASSED",
+      "failure_reason": null
+    },
+    {
+      "question": "How long is the probation period?",
+      "expected_fact": "3 months",
+      "actual_response": "The probation period is three months.",
+      "sources_attributed": [
+        "employee_handbook.txt",
+        "leave_policy.txt"
+      ],
+      "evaluation_status": "PASSED",
+      "failure_reason": null
+    },
+    {
+      "question": "Is multi-factor authentication required?",
+      "expected_fact": "yes",
+      "actual_response": "Yes, multi-factor authentication is required.",
+      "sources_attributed": [
+        "security_policy.txt"
+      ],
+      "evaluation_status": "PASSED",
+      "failure_reason": null
+    }
+  ]
+}
