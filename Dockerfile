@@ -4,9 +4,13 @@ WORKDIR /app
 
 COPY requirements.txt .
 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir --default-timeout=1000 -r requirements.txt
+
 
 COPY app ./app
+COPY documents ./documents
+COPY scripts ./scripts
+COPY data ./data
 
 EXPOSE 8000
 

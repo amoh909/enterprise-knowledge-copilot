@@ -2,7 +2,7 @@
   {
     "question": "How many annual leave days do employees receive?",
     "expected": "20 days",
-    "actual": "Employees receive 20 days of paid annual leave per calendar year.",
+    "actual": "Standard full-time corporate employees receive exactly 20 days of paid annual leave per calendar year.",
     "sources": [
       "leave_policy.txt"
     ],
@@ -11,7 +11,7 @@
   {
     "question": "How many unused annual leave days can be carried forward?",
     "expected": "5 days",
-    "actual": "Up to 5 unused annual leave days may be carried forward.",
+    "actual": "Employees can carry forward up to five unused annual leave days into the next calendar year.",
     "sources": [
       "leave_policy.txt"
     ],
@@ -20,9 +20,10 @@
   {
     "question": "How long is the probation period?",
     "expected": "3 months",
-    "actual": "Three months.",
+    "actual": "The probation period is three months.",
     "sources": [
-      "employee_handbook.txt"
+      "employee_handbook.txt",
+      "leave_policy.txt"
     ],
     "status": "SUCCESS"
   },
